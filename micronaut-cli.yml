@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: cookiecutter.applicationname
+defaultPackage: catgenerator
 testFramework: junit
 sourceLanguage: kotlin
 buildTool: gradle
