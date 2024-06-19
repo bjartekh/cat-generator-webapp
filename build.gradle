@@ -29,10 +29,31 @@ dependencies {
 
 
 application {
-    mainClass = "catgenerator.ApplicationKt"
+    mainClass.set("catgenerator.CatGeneratorKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
+    targetCompatibility = JavaVersion.toVersion("21")
+}
+
+tasks.withType(Jar) {
+    manifest {
+        attributes(
+                'Main-Class': 'catgenerator.CatGeneratorKt'
+        )
+    }
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    options.release.set(21)
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "21"
+    }
 }
 
 
@@ -42,7 +63,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("CatGenerator.*")
+        annotations("catgenerator.*")
     }
     aot {
     // Please review carefully the optimizations enabled below
