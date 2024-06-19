@@ -1,7 +1,7 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.9.23"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.9.23"
-    id("com.google.devtools.ksp") version "1.9.23-1.0.19"
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
+    id("org.jetbrains.kotlin.plugin.allopen") version "2.0.0"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.4.0"
     id("io.micronaut.aot") version "4.4.0"
@@ -25,6 +25,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
 }
 
 
@@ -47,14 +48,16 @@ tasks.withType(Jar) {
 compileJava {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-    options.release.set(21)
+   options.release.set(21)
 }
+
 
 compileKotlin {
     kotlinOptions {
         jvmTarget = "21"
     }
 }
+
 
 
 graalvmNative.toolchainDetection = false
